@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Selection - Wakandan Training Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/wakanda-logo.png') }}" alt="Wakanda Logo" class="logo">
+            </div>
+            <h1>Wakandan Training Simulator</h1>
+            <div class="vibranium-counter">
+                <img src="{{ url_for('static', filename='images/vibranium.png') }}" alt="Vibranium" class="vibranium-icon">
+                <span id="vibranium-count">{{ vibranium }}</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="story-container">
+                <h2>Select Your AI Companion</h2>
+                <p class="story-text">Choose an AI companion to assist you in defending Wakanda's systems. Each AI has unique abilities that can help you in different challenges.</p>
+                
+                <div class="ai-selection-grid">
+                    {% for ai in available_ai %}
+                    <div class="ai-card">
+                        <img src="{{ url_for('static', filename='images/' + ai.image) }}" alt="{{ ai.name }}" class="ai-image">
+                        <div class="ai-details">
+                            <h3>{{ ai.name }}</h3>
+                            <p>{{ ai.description }}</p>
+                            <div class="ai-abilities">
+                                <h4>Abilities:</h4>
+                                <ul>
+                                    {% for ability in ai.abilities %}
+                                    <li>{{ ability }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <a href="{{ url_for('select_ai', ai_id=ai.id) }}" class="select-ai-btn">Select</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Designed by Shuri Labs | Powered by Vibranium</p>
+        </footer>
+    </div>
+</body>
+</html>

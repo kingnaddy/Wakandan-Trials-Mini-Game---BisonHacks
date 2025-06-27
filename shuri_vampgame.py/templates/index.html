@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <html lang="en"></html>
+    <title>Wakanda: Rise of Shuri</title>
+    <!-- Example link to your CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+
+  <body>
+    <div id="game-container">
+      <!-- Main Canvas for the game -->
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+      <!-- HUD / Stats -->
+      <div id="stats">
+        HP: 100 | XP: 0 | Level: 1
+      </div>
+
+      <!-- Start Screen Overlay -->
+      <div id="start-screen" style="display: none;">
+        <h1>Wakanda: Rise of Shuri</h1>
+        <p>Defend Wakanda's vibranium core from relentless waves!</p>
+        <button id="start-game-btn">Start Game</button>
+      </div>
+
+      <!-- Level Up Prompt -->
+      <div id="level-up-prompt" style="display: none;">
+        <h2>Level Up!</h2>
+        <p>Choose your upgrade:</p>
+        <div id="upgrade-options">
+          <!-- Example: generated dynamically in your JS -->
+        </div>
+      </div>
+
+      <!-- Quick Hack Prompt -->
+      <div id="quick-hack-prompt" style="display: none;">
+        <h2>Quick Hack!</h2>
+        <p>Select a hack option:</p>
+        <div id="hack-options">
+          <!-- Example: generated dynamically in your JS -->
+        </div>
+      </div>
+
+      <!-- Game Over Screen -->
+      <div id="game-over" style="display: none;">
+        <h2>Game Over</h2>
+        <p>Your final score: <span id="final-score"></span></p>
+        <button id="restart-btn">Restart</button>
+      </div>
+    </div>
+
+    <!-- Load JavaScript files at the bottom -->
+    <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  </body>
+</html>

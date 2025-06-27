@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Introduction - Wakandan Training Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/wakanda-logo.png') }}" alt="Wakanda Logo" class="logo">
+            </div>
+            <h1>Wakandan Training Simulator</h1>
+            <div class="vibranium-counter">
+                <img src="{{ url_for('static', filename='images/vibranium.png') }}" alt="Vibranium" class="vibranium-icon">
+                <span id="vibranium-count">{{ vibranium }}</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="story-container">
+                <div class="story-progress">
+                    <div class="progress-bar" id="story-progress-bar"></div>
+                </div>
+                
+                <div class="story-text" id="story-content">
+                    <p>Welcome to Shuri's lab, where Wakanda's most advanced technology is developed and tested.</p>
+                </div>
+                
+                <div class="countdown" id="countdown-timer" style="display: none;">
+                    <span id="countdown-value">10</span>
+                </div>
+                
+                <button class="action-button" id="continue-btn">Continue</button>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Designed by Shuri Labs | Powered by Vibranium</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const storyContent = document.getElementById('story-content');
+            const progressBar = document.getElementById('story-progress-bar');
+            const continueBtn = document.getElementById('continue-btn');
+            const countdownTimer = document.getElementById('countdown-timer');
+            const countdownValue = document.getElementById('countdown-value');
+            
+            // Story segments
+            const storySegments = [
+                "<p>Welcome to Shuri's lab, where Wakanda's most advanced technology is developed and tested.</p>",
+                "<p>As the chief scientist and innovator of Wakanda, Shuri has created this training simulator to prepare you for defending the nation's technological infrastructure.</p>",
+                "<p>The simulator will test your knowledge, reflexes, and strategic thinking through a series of challenges.</p>",
+                "<p>Each successful challenge will reward you with vibranium, which can be used to unlock new AI companions and gadgets.</p>",
+                "<p><strong>ALERT! ALERT!</strong></p><p>Sensors have detected unauthorized access to lab systems! This is not a drill!</p>",
+                "<p>Enemy forces are attempting to breach our security protocols. The training session has been accelerated to emergency status.</p>",
+                "<p>You must select an AI companion immediately to begin defending the lab systems.</p>"
+            ];
+            
+            let currentSegment = 0;
+            
+            // Update progress bar
+            function updateProgress() {
+                const progress = ((currentSegment + 1) / storySegments.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Display next story segment
+            function showNextSegment() {
+                if (currentSegment < storySegments.length - 1) {
+                    currentSegment++;
+                    storyContent.innerHTML = storySegments[currentSegment];
+                    updateProgress();
+                    
+                    // Show countdown when we reach the alert message
+                    if (currentSegment === 4) {
+                        continueBtn.disabled = true;
+                        setTimeout(() => {
+                            continueBtn.disabled = false;
+                        }, 1500);
+                    }
+                    
+                    // Start countdown after the final message
+                    if (currentSegment === storySegments.length - 1) {
+                        continueBtn.textContent = 'Select AI Companion';
+                        countdownTimer.style.display = 'block';
+                        startCountdown();
+                    }
+                } else {
+                    // Proceed to AI selection
+                    window.location.href = "{{ url_for('ai_selection') }}";
+                }
+            }
+            
+            // Countdown function
+            function startCountdown() {
+                let timeLeft = 10;
+                countdownValue.textContent = timeLeft;
+                
+                const countdownInterval = setInterval(() => {
+                    timeLeft--;
+                    countdownValue.textContent = timeLeft;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = "{{ url_for('ai_selection') }}";
+                    }
+                }, 1000);
+                
+                // Allow user to skip countdown by clicking the button
+                continueBtn.addEventListener('click', function() {
+                    clearInterval(countdownInterval);
+                    window.location.href = "{{ url_for('ai_selection') }}";
+                }, { once: true });
+            }
+            
+            // Initial setup
+            updateProgress();
+            
+            // Continue button event
+            continueBtn.addEventListener('click', showNextSegment);
+        });
+    </script>
+</body>
+</html>

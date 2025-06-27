@@ -1,0 +1,23 @@
+[
+    {
+        "id": "vibranium_claws",
+        "name": "Vibranium Claws",
+        "description": "Enhanced combat capability with cutting-edge vibranium.",
+        "cost": 100,
+        "image": "vibranium_claws.png"
+    },
+    {
+        "id": "energy_shield",
+        "name": "Energy Shield",
+        "description": "Protective barrier that absorbs incoming attacks.",
+        "cost": 150,
+        "image": "energy_shield.png"
+    },
+    {
+        "id": "sonic_disruptor",
+        "name": "Sonic Disruptor",
+        "description": "Emits targeted sound waves that can disable tech.",
+        "cost": 200,
+        "image": "sonic_disruptor.png"
+    }
+]

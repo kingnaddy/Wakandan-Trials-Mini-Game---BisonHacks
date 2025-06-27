@@ -1,0 +1,32 @@
+[
+    {
+        "id": "auto_turret",
+        "name": "Auto-Turret",
+        "description": "Basic defense system with limited intelligence.",
+        "abilities": [
+            "Basic targeting",
+            "Low-power energy blasts"
+        ],
+        "image": "auto_turret.png"
+    },
+    {
+        "id": "shield_drone",
+        "name": "Shield Drone",
+        "description": "Defensive AI that creates energy barriers.",
+        "abilities": [
+            "Energy shield",
+            "Basic threat assessment"
+        ],
+        "image": "shield_drone.png"
+    },
+    {
+        "id": "panther_scout",
+        "name": "Panther Scout",
+        "description": "Stealthy reconnaissance AI with enhanced sensors.",
+        "abilities": [
+            "Invisibility cloak",
+            "Advanced scanning"
+        ],
+        "image": "panther_scout.png"
+    }
+]

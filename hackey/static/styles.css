@@ -1,0 +1,68 @@
+/* static/styles.css */
+
+/* Import a modern, clean font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Reset basic elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Overall page styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  /* Dark gradient background for a high-tech Wakanda feel */
+  background: linear-gradient(135deg, #0A0A0A 0%, #1F1F1F 100%);
+  color: #FFF;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated flicker for the title text shadow */
+@keyframes flicker {
+  0% { text-shadow: 0 0 10px rgba(255, 180, 0, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(255, 180, 0, 0.9); }
+  100% { text-shadow: 0 0 10px rgba(255, 180, 0, 0.5); }
+}
+
+/* Page title styling */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FFB400; /* Wakanda gold-like color */
+  animation: flicker 2.5s infinite;
+}
+
+/* Button styling */
+button {
+  background-color: #8e24aa; /* Vibrant purple tone */
+  border: none;
+  border-radius: 6px;
+  color: #FFF;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #BA68C8; /* Lighter purple on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(186, 104, 200, 0.7);
+}
+
+/* Active (clicked) button effect */
+button:active {
+  transform: translateY(0);
+  background-color: #7B1FA2;
+  box-shadow: none;
+}

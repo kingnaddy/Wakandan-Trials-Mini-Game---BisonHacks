@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Wakandan Training Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/wakanda-logo.png') }}" alt="Wakanda Logo" class="logo">
+            </div>
+            <h1>Wakandan Training Simulator</h1>
+            <div class="vibranium-counter">
+                <img src="{{ url_for('static', filename='images/vibranium.png') }}" alt="Vibranium" class="vibranium-icon">
+                <span id="vibranium-count">0</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="story-container">
+                <h2>Settings</h2>
+                <p class="story-text">Customize your Wakandan Training Simulator experience with these settings.</p>
+                
+                <form class="settings-form" action="{{ url_for('save_settings') }}" method="post">
+                    <div class="form-group">
+                        <label for="audio_volume">Music Volume</label>
+                        <div class="slider-container">
+                            <input type="range" id="audio_volume" name="audio_volume" class="slider" min="0" max="100" value="{{ settings.audio_volume }}">
+                            <span class="slider-value" id="audio_volume_value">{{ settings.audio_volume }}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sfx_volume">Sound Effects Volume</label>
+                        <div class="slider-container">
+                            <input type="range" id="sfx_volume" name="sfx_volume" class="slider" min="0" max="100" value="{{ settings.sfx_volume }}">
+                            <span class="slider-value" id="sfx_volume_value">{{ settings.sfx_volume }}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Text Speed</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="text_speed" value="slow" {% if settings.text_speed == 'slow' %}checked{% endif %}>
+                                <span>Slow</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="text_speed" value="medium" {% if settings.text_speed == 'medium' %}checked{% endif %}>
+                                <span>Medium</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="text_speed" value="fast" {% if settings.text_speed == 'fast' %}checked{% endif %}>
+                                <span>Fast</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="difficulty" value="easy" {% if settings.difficulty == 'easy' %}checked{% endif %}>
+                                <span>Easy</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="difficulty" value="normal" {% if settings.difficulty == 'normal' %}checked{% endif %}>
+                                <span>Normal</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="difficulty" value="hard" {% if settings.difficulty == 'hard' %}checked{% endif %}>
+                                <span>Hard</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subtitles">Subtitles</label>
+                        <label class="switch">
+                            <input type="checkbox" id="subtitles" name="subtitles" {% if settings.subtitles %}checked{% endif %}>
+                            <span class="slider-switch"></span>
+                        </label>
+                        <p>Enable or disable subtitles during story sequences.</p>
+                    </div>
+                    
+                    <button type="submit" class="save-settings-btn">Save Settings</button>
+                </form>
+                
+                <a href="{{ url_for('home') }}" class="action-button" style="margin-top: 2rem;">Return to Main Menu</a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Designed by Shuri Labs | Powered by Vibranium</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioVolumeSlider = document.getElementById('audio_volume');
+            const audioVolumeValue = document.getElementById('audio_volume_value');
+            const sfxVolumeSlider = document.getElementById('sfx_volume');
+            const sfxVolumeValue = document.getElementById('sfx_volume_value');
+            
+            // Update volume display values
+            audioVolumeSlider.addEventListener('input', function() {
+                audioVolumeValue.textContent = this.value + '%';
+            });
+            
+            sfxVolumeSlider.addEventListener('input', function() {
+                sfxVolumeValue.textContent = this.value + '%';
+            });
+        });
+    </script>
+</body>
+</html>

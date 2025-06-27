@@ -1,0 +1,10 @@
+{
+    "vibranium": 0,
+    "unlocked_ai": [
+        "auto_turret"
+    ],
+    "last_scene": "story_intro",
+    "gadgets": [],
+    "shield_level": 1,
+    "tutorial_completed": false
+}

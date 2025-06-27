@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakandan Training Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/wakanda-logo.png') }}" alt="Wakanda Logo" class="logo">
+            </div>
+            <h1>Wakandan Training Simulator</h1>
+            <div class="vibranium-counter">
+                <img src="{{ url_for('static', filename='images/vibranium.png') }}" alt="Vibranium" class="vibranium-icon">
+                <span id="vibranium-count">{{ vibranium }}</span>
+            </div>
+        </header>
+        
+        <main class="main-menu">
+            <div class="button-container">
+                <a href="{{ url_for('start_training') }}" class="menu-button start-button">
+                    <div class="button-icon">
+                        <img src="{{ url_for('static', filename='images/start-icon.png') }}" alt="Start">
+                    </div>
+                    <div class="button-text">
+                        <h2>Start Training</h2>
+                        <p>Begin a new simulation session</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('continue_game') }}" class="menu-button continue-button {{ 'disabled' if not has_save else '' }}">
+                    <div class="button-icon">
+                        <img src="{{ url_for('static', filename='images/continue-icon.png') }}" alt="Continue">
+                    </div>
+                    <div class="button-text">
+                        <h2>Continue</h2>
+                        <p>Resume your previous session</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('vault') }}" class="menu-button vault-button">
+                    <div class="button-icon">
+                        <img src="{{ url_for('static', filename='images/vault-icon.png') }}" alt="Vault">
+                    </div>
+                    <div class="button-text">
+                        <h2>View Vault</h2>
+                        <p>Access your AI companions and gadgets</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('settings') }}" class="menu-button settings-button">
+                    <div class="button-icon">
+                        <img src="{{ url_for('static', filename='images/settings-icon.png') }}" alt="Settings">
+                    </div>
+                    <div class="button-text">
+                        <h2>Settings</h2>
+                        <p>Customize your experience</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Designed by Shuri Labs | Powered by Vibranium</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

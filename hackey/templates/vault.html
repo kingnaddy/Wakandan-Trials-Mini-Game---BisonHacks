@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault - Wakandan Training Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/wakanda-logo.png') }}" alt="Wakanda Logo" class="logo">
+            </div>
+            <h1>Wakandan Training Simulator</h1>
+            <div class="vibranium-counter">
+                <img src="{{ url_for('static', filename='images/vibranium.png') }}" alt="Vibranium" class="vibranium-icon">
+                <span id="vibranium-count">{{ vibranium }}</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="story-container">
+                <h2>Wakandan Vault</h2>
+                <p class="story-text">Access your unlocked AI companions and gadgets. Complete training simulations to earn vibranium and unlock more powerful equipment.</p>
+                
+                <div class="vault-section">
+                    <h2>Shield Systems</h2>
+                    <div class="shield-level">
+                        <h3>Current Shield Level: {{ shield_level }}/5</h3>
+                        <div class="shield-level-bar">
+                            <div class="shield-level-progress" style="width: {{ (shield_level / 5) * 100 }}%;"></div>
+                        </div>
+                        <p>Upgrade your shield system with vibranium to increase lab defense capabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="vault-section">
+                    <h2>AI Companions</h2>
+                    <div class="vault-grid">
+                        {% for ai in unlocked_ai %}
+                        <div class="vault-item">
+                            <img src="{{ url_for('static', filename='images/' + ai.image) }}" alt="{{ ai.name }}" class="vault-item-image">
+                            <div class="vault-item-details">
+                                <h3>{{ ai.name }}</h3>
+                                <p class="vault-item-description">{{ ai.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        {% for ai in locked_ai %}
+                        <div class="vault-item locked">
+                            <img src="{{ url_for('static', filename='images/locked-ai.png') }}" alt="Locked" class="vault-item-image">
+                            <div class="vault-item-details">
+                                <h3>{{ ai.name }}</h3>
+                                <p class="vault-item-description">Complete more training to unlock</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="vault-section">
+                    <h2>Gadgets</h2>
+                    <div class="vault-grid">
+                        {% if unlocked_gadgets %}
+                            {% for gadget in unlocked_gadgets %}
+                            <div class="vault-item">
+                                <img src="{{ url_for('static', filename='images/' + gadget.image) }}" alt="{{ gadget.name }}" class="vault-item-image">
+                                <div class="vault-item-details">
+                                    <h3>{{ gadget.name }}</h3>
+                                    <p class="vault-item-description">{{ gadget.description }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No gadgets unlocked yet. Complete training simulations to earn vibranium and unlock gadgets.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('home') }}" class="action-button">Return to Main Menu</a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Designed by Shuri Labs | Powered by Vibranium</p>
+        </footer>
+    </div>
+</body>
+</html>

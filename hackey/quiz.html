@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Head content remains unchanged -->
+</head>
+<body>
+    <!-- Body content remains unchanged up to the script tag -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize quiz variables
+            let currentQuestion = 0;
+            let score = 0;
+            const totalQuestions = questions.length; // Ensure 'questions' is defined as an array in your script
+            let timeLeft = 20;
+            let timerInterval;
+            
+            // Start timer for first question
+            startTimer();
+            
+            // Timer function
+            function startTimer() {
+                // Reset timer UI
+                const timerValue = document.getElementById('timer-value');
+                const timerProgress = document.getElementById('timer-progress');
+                timerValue.textContent = timeLeft;
+                timerProgress.style.width = '100%';
+                
+                // Clear any existing timer
+                if (timerInterval) clearInterval(timerInterval);
+                
+                // Start new timer
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    timerValue.textContent = timeLeft;
+                    timerProgress.style.width = `${(timeLeft / 20) * 100}%`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        moveToNextQuestion();
+                    }
+                }, 1000);
+            }
+            
+            // Function to select an answer
+            window.selectAnswer = function(element, questionIndex, optionIndex, correctAnswer) {
+                clearInterval(timerInterval);
+                
+                const options = document.querySelectorAll(`#question-${questionIndex} .answer-option`);
+                options.forEach(option => option.classList.remove('selected'));
+                element.classList.add('selected');
+                
+                const correctOptionIndex = correctAnswer.charCodeAt(0) - 65;
+                options[correctOptionIndex].classList.add('correct');
+                
+                if (optionIndex === correctOptionIndex) {
+                    score++;
+                    document.getElementById(`progress-dot-${questionIndex}`).classList.add('correct');
+                } else {
+                    element.classList.add('incorrect');
+                    document.getElementById(`progress-dot-${questionIndex}`).classList.add('incorrect');
+                }
+                
+                document.getElementById('current-score').textContent = score;
+                
+                setTimeout(moveToNextQuestion, 1000);
+            }
+            
+            // Function to move to the next question
+            function moveToNextQuestion() {
+                document.getElementById(`question-${currentQuestion}`).style.display = 'none';
+                currentQuestion++;
+                
+                if (currentQuestion < totalQuestions) {
+                    document.getElementById(`question-${currentQuestion}`).style.display = 'block';
+                    document.getElementById(`progress-dot-${currentQuestion}`).classList.add('active');
+                    timeLeft = 20;
+                    startTimer();
+                } else {
+                    endQuiz();
+                }
+            }
+            
+            // Function to end the quiz
+            function endQuiz() {
+                document.getElementById('question-container').style.display = 'none';
+                document.getElementById('quiz-results').style.display = 'block';
+                document.getElementById('final-score').textContent = score;
+                const vibraniumEarned = score * 5;
+                document.getElementById('vibranium-earned').textContent = vibraniumEarned;
+                document.getElementById('continue-btn').href = `/reward/${vibraniumEarned}`;
+                updateVibraniumCount(vibraniumEarned);
+            }
+            
+            // Function to update Vibranium count
+            function updateVibraniumCount(amount) {
+                const vibraniumCount = document.getElementById('vibranium-count');
+                const currentCount = parseInt(vibraniumCount.textContent);
+                vibraniumCount.textContent = currentCount + amount;
+            }
+        }
+    
+    );
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakanda: Rise of Shuri</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 50px;
+            font-size: 20px;
+            overflow: hidden;
+        }
+
+        #terminal {
+            white-space: pre-line;
+            width: 80%;
+            margin: 0 auto;
+            border-left: 2px solid #00ffcc;
+            padding-left: 15px;
+            animation: flicker 0.15s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from { opacity: 1; }
+            to { opacity: 0.9; }
+        }
+
+        button {
+            padding: 12px 24px;
+            margin-top: 40px;
+            font-size: 18px;
+            background-color: #00ffcc;
+            color: black;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00ccaa;
+        }
+    </style>
+</head>
+<body>
+
+<div id="terminal"></div>
+<a href="/mission1" style="display:none;" id="startBtn">
+    <button>Start Mission</button>
+</a>
+
+<script>
+    const lines = [
+        "Welcome, Shuri...",
+        "Wakanda’s vibranium is under threat.",
+        "A shadow is moving in the dark...",
+        "We need you now more than ever.",
+        "Are you ready to begin your mission?"
+    ];
+
+    const terminal = document.getElementById("terminal");
+    const startBtn = document.getElementById("startBtn");
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+        if (lineIndex < lines.length) {
+            const line = lines[lineIndex];
+            if (charIndex < line.length) {
+                terminal.textContent += line.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLine, 20);
+            } else {
+                terminal.textContent += "\n";
+                lineIndex++;
+                charIndex = 0;
+                setTimeout(typeLine, 300); // wait before next line
+            }
+        } else {
+            // Show button after typing is complete
+            startBtn.style.display = "inline-block";
+        }
+    }
+
+    window.onload = typeLine;
+</script>
+
+</body>
+</html> 
