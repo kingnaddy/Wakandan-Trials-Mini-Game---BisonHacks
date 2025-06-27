@@ -2,7 +2,7 @@
 <img src="https://img.icons8.com/?size=512&id=55494&format=png" align="right" width="30%" style="margin: -20px 0 0 20px;">
 <h1>BISONHACKS-MINIGAME-WITH-PYTHON-HTML-CSS</h1>
 <p align="left">
-	<em><code>❯ REPLACE-ME</code></em>
+	<em><code>A hacker-themed multi-stage web and console minigame built with Python, HTML, CSS, and JavaScript.</code></em>
 </p>
 <p align="left">
 	<img src="https://img.shields.io/github/license/kingnaddy/BisonHacks-Minigame-with-Python-HTML-CSS?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
@@ -39,13 +39,19 @@
 
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+<code>BisonHacks-Minigame-with-Python-HTML-CSS is a collaborative hackathon project featuring an interactive multi-level game blending web and terminal-based gameplay. Players take on missions with AI companions and complete puzzles or challenges across different interfaces. This hybrid structure teaches programming, logic, and storytelling while simulating a cybersecurity-themed experience.</code>
 
 ---
 
 ## 👾 Features
 
-<code>❯ REPLACE-ME</code>
+<code>
+- 🎮 Console-based gameplay with characters and actions (Python)
+- 🌐 Web-based interactive UI for quiz, selection, and missions (HTML/CSS/JavaScript)
+- 🧠 AI companion selection and decision-based narrative
+- 📁 JSON-based state tracking for game progress and player data
+- 🔄 Modular structure with reusable components across games
+- 🦸 Inspired by Shuri's intelligence and Wakandan technology</code>
 
 ---
 
